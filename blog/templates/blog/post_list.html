@@ -1,0 +1,12 @@
+
+<dir>
+	<h1><a href="/">俺のブログ</a></h1>
+</dir>
+
+{% for post in posts %}
+	<div>
+		<p>published: {{ post.published_date }}</p>
+		<h2><a href="">{{ post.title }}</a></h2>
+		<p>{{ post.text|linebreaksbr }}</p>
+	</div>
+{% endfor %}
