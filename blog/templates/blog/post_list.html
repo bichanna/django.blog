@@ -1,12 +1,11 @@
+{% extends 'blog/base.html' %}
 
-<dir>
-	<h1><a href="/">俺のブログ</a></h1>
-</dir>
-
-{% for post in posts %}
-	<div>
-		<p>published: {{ post.published_date }}</p>
-		<h2><a href="">{{ post.title }}</a></h2>
-		<p>{{ post.text|linebreaksbr }}</p>
-	</div>
-{% endfor %}
+{% block content %}
+		{% for post in posts %}
+		<div class="post">
+			<p class="date">publoshed: {{ post.published_date }}</p>
+			<h2><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+			<p>{{ post.text|linebreaksbr }}</p>
+		</div>
+		{% endfor %}
+{% endblock %}
