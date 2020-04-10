@@ -7,6 +7,7 @@
 
 """
 
+from django.contrib.auth.views import PasswordChangeView,PasswordChangeDoneView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import DetailView, UpdateView
 from .forms import UserUpdateForm
