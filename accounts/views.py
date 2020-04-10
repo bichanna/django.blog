@@ -9,10 +9,20 @@
 
 from django.contrib.auth.views import PasswordChangeView,PasswordChangeDoneView
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.views.generic import DetailView, UpdateView
-from .forms import UserUpdateForm
+from django.views.generic import DetailView, UpdateView, CreateView
+from .forms import UserUpdateForm, UserCreateForm
 from django.contrib.auth.models import User
 from django.shortcuts import resolve_url
+from django.urls import reverse_lazy
+
+class UserCreate(CreateView):
+	"""
+		ユーザー作成用のビュー
+	"""
+	template_name = "registration/user_create.html"
+	form_class = UserCreateForm
+	success_url = reverse_lazy("login")
+
 
 # Create your views here.
 class OnlyYouMixin(UserPassesTestMixin):
