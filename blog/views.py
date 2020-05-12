@@ -14,7 +14,7 @@ Written by Nobuharu Shimazu
 
 """
 from django.shortcuts import render, reverse, get_object_or_404
-from django.views.generic import View,DetailView, CreateView, RedirectView
+from django.views.generic import View,DetailView, CreateView, RedirectView, UpdateView, DeleteView
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm
@@ -95,7 +95,28 @@ class PublishRedirectView(LoginRequiredMixin, RedirectView):
 
 
 
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+	"""
+		変更ページのビュー
+	"""
+	model = Post
+	form_class = PostForm
+	template_name = 'blog/post_update.html'
 
+	def get_success_url(self):
+		"""詳細画面にリダイレクトする。"""
+		return reverse('blog:post_detail', args=(self.object.id,))
+
+
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+	"""
+		削除用のビュー
+	"""
+	model = Post
+	template_name = "blog/post_delete.html"
+	def get_success_url(self):
+		"""一覧ページにリダイレクト"""
+		return reverse("blog:post_list")
 
 
 
