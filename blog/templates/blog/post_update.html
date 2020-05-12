@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	{% bootstrap_form_errors form type='non_fields' %}
+	{% bootstrap_field form.title placeholder="タイトル" %}
+	{% bootstrap_field form.text placeholder="テキスト" %}
+	<button type="submit" class="btn btn-primary btn-lg">変更</button>
+</form>
+{% endblock %}
