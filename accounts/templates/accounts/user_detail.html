@@ -17,4 +17,5 @@
 	</tbody>
 </table>
 <a href="{% url 'accounts:password_change' %}" class="btn btn-success btn-lg">パスワード変更</a>
+<a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success btn-lg">ユーザー情報更新</a>
 {% endblock %}

@@ -18,14 +18,14 @@ class Post(models.Model):
 	"""
 		ブログ記事クラス
 
-		auther: さくしゃ (Djangoのユーザモデルを利用)
+		author: さくしゃ (Djangoのユーザモデルを利用)
 		title: ブログのタイトル
 		text: ブログ本文
 		created_date: 作成日
 		published_date: 公開日
 	"""
 	#フィールドの定義
-	auther = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	title = models.CharField(max_length=200)
 	text = models.TextField()
 	created_date = models.DateTimeField(default = timezone.now)
