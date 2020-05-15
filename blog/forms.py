@@ -8,6 +8,7 @@
 
 
 from django.forms import ModelForm
+from django import forms
 from .models import Post
 
 class PostForm(ModelForm):
@@ -25,3 +26,9 @@ class PostForm(ModelForm):
 			"title":"タイトル",
 			"text":"テキスト",
 		}
+
+class PostSearchForm(forms.Form):
+	"""
+		記事検索用のフォーム
+	"""
+	key_word = forms.CharField(label="検索キーワード", required=False)

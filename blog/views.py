@@ -14,26 +14,58 @@ Written by Nobuharu Shimazu
 
 """
 from django.shortcuts import render, reverse, get_object_or_404
-from django.views.generic import View,DetailView, CreateView, RedirectView, UpdateView, DeleteView
+from django.views.generic import View,DetailView, CreateView, RedirectView, UpdateView, DeleteView, ListView
 from django.utils import timezone
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, PostSearchForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
-class PostListView(View):
-	def get(self,request,*args,**kwargs):
+class PostListView(ListView):
+	"""
+		Get Request用の処理
+		ブログ記事一覧を表示する。
+	"""
+	model = Post
+	template_name = "blog/post_list.html"
+	paginate_by = 4
+
+
+	def get_queryset(self):
 		"""
-			Get request用の処理
-			ブログ記事入欄を表示する
+			検索条件の設定
 		"""
-		context = {}
+		#フォームを設定。
+		form = PostSearchForm(self.request.GET or None)
+		self.form = form
+
+
+
+		queryset = super().get_queryset()
+		if form.is_valid():
+			key_word = form.cleaned_data.get('key_word')
+			if key_word:
+				for word in key_word.split():
+					queryset = queryset.filter(Q(title__icontains=word) | Q(text__icontains=word))
+
 		#記事データを取得
-		posts = Post.objects.filter(published_date__lte=timezone.now()).order_by("published_date")
-		context["posts"] = posts
-		return render(request,"blog/post_list.html",context)
+		queryset = queryset.filter(published_date__lte=timezone.now()).order_by("published_date")
+		return queryset
+
+
+	def get_context_data(self, **kwargs):
+		"""
+			コンテキストの設定。
+		"""
+
+		context = super().get_context_data(**kwargs)
+		context["form"] = self.form
+		return context
 
 post_list = PostListView.as_view()
+
+
 
 class PostDetailView(DetailView):
 	model = Post
@@ -117,6 +149,9 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 	def get_success_url(self):
 		"""一覧ページにリダイレクト"""
 		return reverse("blog:post_list")
+
+
+
 
 
 

@@ -1,11 +1,18 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-		{% for post in posts %}
+	<form id="form" action="" method="GET">
+		{{ form.key_word }}
+		<button type="submit" class="btn btn-primary btn-lg">検索</button>
+	</form>
+	
+	{% for post in post_list %}
 		<div class="post">
-			<p class="date">publoshed: {{ post.published_date }}</p>
+			<p class="date">published: {{ post.published_date }}, by:{{ post.author.username }}</p>
 			<h2><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
 			<p>{{ post.text|linebreaksbr }}</p>
 		</div>
-		{% endfor %}
+	{% endfor %}
+
+{% include "blog/page.html" %}
 {% endblock %}
