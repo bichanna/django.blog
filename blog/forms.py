@@ -31,4 +31,4 @@ class PostSearchForm(forms.Form):
 	"""
 		記事検索用のフォーム
 	"""
-	key_word = forms.CharField(label="検索キーワード", required=False)
+	key_word = forms.CharField(label="", required=False)
