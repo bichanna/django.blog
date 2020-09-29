@@ -88,6 +88,10 @@ DATABASES = {
         "OPTIONS": {
             "charset": "utf8mb4",
         },
+        #テストようにこの行を追加
+        "TEST": {
+            "NAME": "test_djangodb"
+        },
 
     }
 }

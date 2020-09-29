@@ -21,6 +21,8 @@ from .forms import PostForm, PostSearchForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from .mixins import CheckPermissionMixin
+
 
 class PostListView(ListView):
 	"""
@@ -29,7 +31,7 @@ class PostListView(ListView):
 	"""
 	model = Post
 	template_name = "blog/post_list.html"
-	paginate_by = 4
+	paginate_by = 5
 
 
 	def get_queryset(self):
@@ -51,6 +53,8 @@ class PostListView(ListView):
 
 		#記事データを取得
 		queryset = queryset.filter(published_date__lte=timezone.now()).order_by("published_date")
+		print(queryset)
+		print(form)
 		return queryset
 
 
@@ -58,7 +62,6 @@ class PostListView(ListView):
 		"""
 			コンテキストの設定。
 		"""
-
 		context = super().get_context_data(**kwargs)
 		context["form"] = self.form
 		return context
@@ -67,7 +70,7 @@ post_list = PostListView.as_view()
 
 
 
-class PostDetailView(DetailView):
+class PostDetailView(CheckPermissionMixin,DetailView):
 	model = Post
 	template_name = "blog/post_detail.html"
 
