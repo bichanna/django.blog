@@ -1,10 +1,6 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-	<form id="form" action="" method="GET">
-		{{ form.key_word }}
-		<button type="submit" class="btn btn-primary btn-lg">検索</button>
-	</form>
 	
 	{% for post in post_list %}
 		<div class="post">

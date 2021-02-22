@@ -88,6 +88,9 @@ DATABASES = {
         "OPTIONS": {
             "charset": "utf8mb4",
         },
+        "TEST": {
+            "NAME": "test_djangodb",
+        },
 
     }
 }
@@ -115,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'ja'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Tokyo'
 
@@ -137,6 +140,11 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 
+# Base url to serve media files
+MEDIA_URL = '/media/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 

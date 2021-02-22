@@ -3,19 +3,19 @@
 <table class="table">
 	<tbody>
 		<tr>
-			<th>ユーザー名</th>
+			<th>User Name</th>
 			<td>{{ user.email }}</td>
 		</tr>
 		<tr>
-			<th>姓</th>
+			<th>Last Name</th>
 			<td>{{ user.last_name }}</td>
 		</tr>
 		<tr>
-			<th>名</th>
+			<th>First Name</th>
 			<td>{{ user.first_name}}</td>
 		</tr>
 	</tbody>
 </table>
-<a href="{% url 'accounts:password_change' %}" class="btn btn-success btn-lg">パスワード変更</a>
-<a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success btn-lg">ユーザー情報更新</a>
+<a href="{% url 'accounts:password_change' %}" class="btn btn-success btn-lg">Change Password</a>
+<a href="{% url 'accounts:user_update' user.pk %}" class="btn btn-success btn-lg">Update User Info</a>
 {% endblock %}

@@ -29,7 +29,7 @@ class PostListView(ListView):
 	"""
 	model = Post
 	template_name = "blog/post_list.html"
-	paginate_by = 4
+	paginate_by = 10
 
 
 	def get_queryset(self):
@@ -37,10 +37,10 @@ class PostListView(ListView):
 			検索条件の設定
 		"""
 		#フォームを設定。
+		#user = self.request.user
+		#if user.is_authenticated:
 		form = PostSearchForm(self.request.GET or None)
 		self.form = form
-
-
 
 		queryset = super().get_queryset()
 		if form.is_valid():
@@ -52,6 +52,15 @@ class PostListView(ListView):
 		#記事データを取得
 		queryset = queryset.filter(published_date__lte=timezone.now()).order_by("published_date")
 		return queryset
+		"""
+		else:
+			form = PostSearchForm(self.request.GET or None)
+			self.form = form
+			queryset = super().get_queryset()
+			queryset = queryset.filter(author_id__username=self.request.user.username)
+			return queryset
+		"""
+
 
 
 	def get_context_data(self, **kwargs):
