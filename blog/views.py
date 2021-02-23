@@ -21,6 +21,7 @@ from .forms import PostForm, PostSearchForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 
 class PostListView(ListView):
 	"""
@@ -75,12 +76,18 @@ class PostListView(ListView):
 post_list = PostListView.as_view()
 
 
+def PostLike(request, pk):
+	post = get_object_or_404(BlogPost, id=request.POST.get('blogpost_id'))
+	if post.likes.filter(id=request.user.id).exists():
+		post.likes.remove(request.user)
+	else:
+		post.likes.add(request.user)
+		return HttpResponseRedirect(reverse('blogpost-detail', args=[str(pk)]))
 
 class PostDetailView(DetailView):
 	model = Post
 	template_name = "blog/post_detail.html"
-
-
+	
 post_detail = PostDetailView.as_view()
 
 

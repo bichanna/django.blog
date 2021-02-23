@@ -1,4 +1,4 @@
-1 a, h2 a {
+h1 a, h2 a {
 	color: #DE781F;
 }
 
@@ -9,6 +9,11 @@ html {
 body {
 	font-size: 1.4rem;
 	font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+#image {
+	max-width: 500px;
+	max-height: 400px;
 }
 
 .navbar {
