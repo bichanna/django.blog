@@ -5,15 +5,12 @@
 	<head>
 		{% bootstrap_css %}
 		{% bootstrap_javascript jquery="slim" %}
+
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light">
-			{% if user.is_authenticated %}
-				<a class="navbar-brand" href="/">{{user.username}}のブログ！</a>
-			{% else %}
-				<a class="navbar-brand" href="/">俺のブログ！</a>
-			{% endif %}
+			<a class="navbar-brand" href="/">bichanna's Math Blog</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -28,20 +25,20 @@
 					
 					{% if user.is_authenticated %}
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'blog:post_review'%}">下書き一覧</a>
+						<a class="nav-link" href="{% url 'blog:post_review'%}">Draft List</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'accounts:user_detail' user.pk %}">ユーザー情報閲覧</a>
+						<a class="nav-link" href="{% url 'accounts:user_detail' user.pk %}">User Info</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
+						<a class="nav-link" href="{% url 'logout' %}">Log Out</a>
 					</li>
 					{% else %}
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'accounts:user_create' %}">サインアップ</a>
+						<!--<a class="nav-link" href="{% url 'accounts:user_create' %}">Sign Up</a>-->
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'login' %}">ログイン</a>
+						<a class="nav-link" href="{% url 'login' %}">Log In</a>
 					</li>
 					{% endif %}
 				</ul>

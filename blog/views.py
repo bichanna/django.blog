@@ -21,6 +21,7 @@ from .forms import PostForm, PostSearchForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 
 class PostListView(ListView):
 	"""
@@ -29,7 +30,7 @@ class PostListView(ListView):
 	"""
 	model = Post
 	template_name = "blog/post_list.html"
-	paginate_by = 4
+	paginate_by = 10
 
 
 	def get_queryset(self):
@@ -37,10 +38,10 @@ class PostListView(ListView):
 			検索条件の設定
 		"""
 		#フォームを設定。
+		#user = self.request.user
+		#if user.is_authenticated:
 		form = PostSearchForm(self.request.GET or None)
 		self.form = form
-
-
 
 		queryset = super().get_queryset()
 		if form.is_valid():
@@ -52,6 +53,15 @@ class PostListView(ListView):
 		#記事データを取得
 		queryset = queryset.filter(published_date__lte=timezone.now()).order_by("published_date")
 		return queryset
+		"""
+		else:
+			form = PostSearchForm(self.request.GET or None)
+			self.form = form
+			queryset = super().get_queryset()
+			queryset = queryset.filter(author_id__username=self.request.user.username)
+			return queryset
+		"""
+
 
 
 	def get_context_data(self, **kwargs):
@@ -66,12 +76,18 @@ class PostListView(ListView):
 post_list = PostListView.as_view()
 
 
+def PostLike(request, pk):
+	post = get_object_or_404(BlogPost, id=request.POST.get('blogpost_id'))
+	if post.likes.filter(id=request.user.id).exists():
+		post.likes.remove(request.user)
+	else:
+		post.likes.add(request.user)
+		return HttpResponseRedirect(reverse('blogpost-detail', args=[str(pk)]))
 
 class PostDetailView(DetailView):
 	model = Post
 	template_name = "blog/post_detail.html"
-
-
+	
 post_detail = PostDetailView.as_view()
 
 

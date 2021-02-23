@@ -21,10 +21,11 @@ class PostForm(ModelForm):
 		#モデルクラスを指定
 		model = Post
 		#モデルフィールドを指定
-		fields = ("title", "text")
+		fields = ("title", "text", "image")
 		labels = {
-			"title":"タイトル",
-			"text":"テキスト",
+			"title":"Title",
+			"text":"Text",
+			"image":"Image",
 		}
 
 class PostSearchForm(forms.Form):

@@ -5,8 +5,9 @@
 <form method="post">
 	{% csrf_token %}
 	{% bootstrap_form_errors form type='non_fields' %}
-	{% bootstrap_field form.title placeholder="タイトル" %}
-	{% bootstrap_field form.text placeholder="テキスト" %}
-	<button type="submit" class="btn btn-primary btn-lg">変更</button>
+	{% bootstrap_field form.title placeholder="Title" %}
+	{% bootstrap_field form.text placeholder="Text" %}
+	{% bootstrap_field form.image placeholder="Image" %}
+	<button type="submit" class="btn btn-primary btn-lg">Update</button>
 </form>
 {% endblock %}
