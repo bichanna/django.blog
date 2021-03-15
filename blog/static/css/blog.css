@@ -11,9 +11,44 @@ body {
 	font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 
+footer {
+	position: relative;
+	background-color: rgba(222,120,31,0.50);
+	background-size: cover;
+	margin-bottom: 60px;
+	opacity: 100%;
+}
+
+
+footer::after {
+	content:"";
+	background-image: url("/media/images/neko-man.png");
+	background-size: 3%;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	opacity: 0.20;
+}
+
 #image {
 	max-width: 500px;
 	max-height: 400px;
+}
+
+#form {
+	margin-right: 35px;
+}
+
+.search-botton {
+	border-radius: 10px;
+	background-color: #DE781F;
+	transition: background-color 0.2s;
+}
+
+.search-botton:hover {
+	background-color: rgba(255,255,0,.5);
 }
 
 .navbar {
@@ -21,28 +56,39 @@ body {
 	background-color: rgba(222,120,31,1);
 	color: rgba(255,255,255,1);
 	padding: 20px 20px 20px 40px;
+	transition: background-color 0.2s;
+}
+.about-author{
+	background-color: rgba(222,120,31,0.68);
+	transition: background-color 0.2s;
 }
 
 .navbar .navbar-brand {
 	font-size: 3.0rem;
 	background-color: rgba(222,120,31,1);
 	color: rgba(255,255,255,1);
+	transition: background-color 0.2s;
 
 }
 
 .navbar-light .navbar-nav .nav-link {
 	background-color: rgba(222,120,31,1);
 	color: rgba(255,255,255,1);
+	transition: background-color 0.2s;
+	border-radius: 10px;
+	font-size: 82%;
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
 	background-color: rgba(255,255,0,.5);
 	color: rgba(255,255,255,1);
+	border-radius: 10px;
+	font-size: 82%;
 }
 
 .content {
-	margin-top: 20px;
-	margin-left: 40px;
+	margin-top: 40px;
+	margin-left: 80px;
 }
 
 .date {
@@ -61,4 +107,107 @@ tbody tr.clickable:hover td {
 
 	cursor: pointer;
 }
+
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  transition: background-color,0.2s;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #Efa769;
+}
+
+
+
+/* Dropdown Button */
+.dropbtn2 {
+  background-color: #DE781F;
+  color: white;
+  padding: 9px;
+  font-size: 21px;
+  border: none;
+  border-radius: 3px;
+  transition: background-color, 0.2s;
+}
+/* Dropdown Button */
+.dropbtn {
+  background-color: #DE781F;
+  color: white;
+  padding: 7px;
+  font-size: 13px;
+  border: none;
+  border-radius: 5px;
+  transition: background-color, 0.1s;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content2 {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 60px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+  z-index: 3;
+}
+
+
+/* Links inside the dropdown */
+.dropdown-content2 a {
+  color: black;
+  /*padding: 3px;*/
+  padding-bottom: 13px;
+  padding-top: 13px;
+  padding-left: 3px;
+  text-decoration: none;
+  display: block;
+  z-index: 3;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  z-index: 3;
+}
+
+/* Change color of dropdown links on hover */
+/*.dropdown-content a:hover {background-color: #ddd;}*/
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content2 {
+	display: block;
+}
+
+.dropdown-content2 a:hover {background-color: #ddd;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn2 {
+	background-color: rgba(255,255,0,.5);
+}
+
+
 

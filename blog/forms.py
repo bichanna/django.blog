@@ -12,15 +12,8 @@ from django import forms
 from .models import Post
 
 class PostForm(ModelForm):
-	"""
-		記事登録画面用のフォーム
-		title: ブログのタイトル
-		text: ブログ本文
-	"""
 	class Meta:
-		#モデルクラスを指定
 		model = Post
-		#モデルフィールドを指定
 		fields = ("title", "text", "image")
 		labels = {
 			"title":"Title",
@@ -29,7 +22,10 @@ class PostForm(ModelForm):
 		}
 
 class PostSearchForm(forms.Form):
-	"""
-		記事検索用のフォーム
-	"""
-	key_word = forms.CharField(label="検索キーワード", required=False)
+	key_word = forms.CharField(
+		required=False,
+		widget= forms.TextInput(attrs={"placeholder":"🔍 search..."})   # this is how to put a place holder
+        )
+
+
+#🔍 search...

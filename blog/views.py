@@ -30,7 +30,7 @@ class PostListView(ListView):
 	"""
 	model = Post
 	template_name = "blog/post_list.html"
-	paginate_by = 10
+	paginate_by = 12
 
 
 	def get_queryset(self):
@@ -42,16 +42,24 @@ class PostListView(ListView):
 		#if user.is_authenticated:
 		form = PostSearchForm(self.request.GET or None)
 		self.form = form
-
-		queryset = super().get_queryset()
+		sort = self.request.GET.get('sort')
+		if sort == "old":
+			queryset = super().get_queryset()
+		else:
+			queryset = super().get_queryset()
+			queryset = queryset.order_by("-published_date")
+	
 		if form.is_valid():
 			key_word = form.cleaned_data.get('key_word')
 			if key_word:
 				for word in key_word.split():
 					queryset = queryset.filter(Q(title__icontains=word) | Q(text__icontains=word))
 
+
+
+
 		#記事データを取得
-		queryset = queryset.filter(published_date__lte=timezone.now()).order_by("published_date")
+		queryset = queryset.filter(published_date__lte=timezone.now())
 		return queryset
 		"""
 		else:
@@ -75,14 +83,11 @@ class PostListView(ListView):
 
 post_list = PostListView.as_view()
 
+class AboutAuthorView(ListView):
+	model = Post
+	template_name = "blog/about_author.html"
+post_list = AboutAuthorView.as_view()
 
-def PostLike(request, pk):
-	post = get_object_or_404(BlogPost, id=request.POST.get('blogpost_id'))
-	if post.likes.filter(id=request.user.id).exists():
-		post.likes.remove(request.user)
-	else:
-		post.likes.add(request.user)
-		return HttpResponseRedirect(reverse('blogpost-detail', args=[str(pk)]))
 
 class PostDetailView(DetailView):
 	model = Post
@@ -165,16 +170,6 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 	def get_success_url(self):
 		"""一覧ページにリダイレクト"""
 		return reverse("blog:post_list")
-
-
-
-
-
-
-
-
-
-
 
 
 
