@@ -18,25 +18,36 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav mr-auto">
 					<!-- 左にメニューを出すとき-->
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'blog:about_author' %}">About bichanna</a>
+						<a class="nav-link" href="{% url 'blog:about_author' %}">About this website</a>
+					</li>
 				</ul>
 
 				<ul class="navbar-nav">
 					<!-- 右にメニューを出すとき -->
-					
+						<!-- search window-->
+					<li class="nav-item">
+						<form id="form" action="" method="GET">
+							{{ form.key_word }}
+							{% if form %}
+							{% endif %}
+						</form>
+					</li>
 					{% if user.is_authenticated %}
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'blog:post_review'%}">Draft List</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'accounts:user_detail' user.pk %}">User Info</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+					<!-- DROP DOWN MENU -->
+					<li class="dropdown">
+						<button class="dropbtn2">Setting<i class="fa fa-caret-down"></i></button>
+						<div class="dropdown-content2">
+							<a href="{% url 'accounts:user_detail' user.pk %}">User Info</a>
+							<a href="{% url 'blog:post_review'%}">Draft List</a>
+							<a href="{% url 'logout' %}">Log Out</a>
+						</div>
 					</li>
 					{% else %}
-					<li class="nav-item">
-						<!--<a class="nav-link" href="{% url 'accounts:user_create' %}">Sign Up</a>-->
-					</li>
+					<!--<li class="nav-item">
+						<a class="nav-link" href="{% url 'accounts:user_create' %}">Sign Up</a>
+					</li>-->
 					<li class="nav-item">
 						<a class="nav-link" href="{% url 'login' %}">Log In</a>
 					</li>

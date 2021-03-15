@@ -16,4 +16,5 @@ admin.site.register(Post)
 
 
 
+
 ### adminのパスワードはNobu8717
