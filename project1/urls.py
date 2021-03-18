@@ -23,7 +23,6 @@ urlpatterns = [
     path("",include("blog.urls")),
     path("accounts/",include("accounts.urls")),
     path("accounts/",include("django.contrib.auth.urls")),
-    path('like/', include("blog.urls")),
 ]
 
 

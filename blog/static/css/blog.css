@@ -3,7 +3,7 @@ h1 a, h2 a {
 }
 
 html {
-	font-size: 62.5%;
+	font-size: 63.5%;
 }
 
 body {
@@ -19,18 +19,13 @@ footer {
 	opacity: 100%;
 }
 
-
-footer::after {
-	content:"";
-	background-image: url("/media/images/neko-man.png");
-	background-size: 3%;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	left: 0px;
-	opacity: 0.20;
+.signUp {
+	margin-right: 12px;
+	border:5px;
+	background-color: rgba(222,120,31,0.68);
 }
+
+
 
 #image {
 	max-width: 500px;
@@ -60,7 +55,9 @@ footer::after {
 }
 .about-author{
 	background-color: rgba(222,120,31,0.68);
-	transition: background-color 0.2s;
+}
+.about-author p {
+	padding: 7px;
 }
 
 .navbar .navbar-brand {
@@ -88,7 +85,7 @@ footer::after {
 
 .content {
 	margin-top: 40px;
-	margin-left: 80px;
+	margin-left: 130px;
 }
 
 .date {
@@ -115,6 +112,9 @@ tbody tr.clickable:hover td {
   position: relative;
   display: inline-block;
   transition: background-color,0.2s;
+}
+.first {
+	margin-bottom: 30px;
 }
 
 /* Change color of dropdown links on hover */

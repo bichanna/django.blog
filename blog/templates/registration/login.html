@@ -1,10 +1,10 @@
 {% extends "blog/base.html" %}
 {% load bootstrap4 %}
 {% block content %}
-<h2>ログイン</h2>
+<h2 class="signUp">&nbsp;&nbsp;Log in</h2>
 <form method="post">
 	{% csrf_token %}
 	{% bootstrap_form form %}
-	<button type="submit" class="btn btn-primary btn-lg">ログイン</button>
+	<button type="submit" class="btn btn-primary btn-lg">Log in</button>
 </form>
 {% endblock %}

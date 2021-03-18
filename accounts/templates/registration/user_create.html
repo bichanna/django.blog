@@ -2,10 +2,10 @@
 {% load bootstrap4 %}
 
 {% block content %}
-	<h2>ユーザー登録</h2>
+	<h2 class="signUp">&nbsp;&nbsp;Sign UP!</h2>
 	<form method="post">
 		{% csrf_token %}
 		{% bootstrap_form form %}
-		<button type="submit" class="btn btn-primary btn-lg">ユーザー登録</button>
+		<button type="submit" class="btn btn-primary btn-lg">Create</button>
 	</form>
 {% endblock %}

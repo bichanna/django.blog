@@ -19,8 +19,8 @@
 				<ul class="navbar-nav mr-auto">
 					<!-- 左にメニューを出すとき-->
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'blog:about_author' %}">About bichanna</a>
-						<a class="nav-link" href="{% url 'blog:about_author' %}">About this website</a>
+						<a class="nav-link" href="{% url 'blog:about_author' %}">&nbsp; About bichanna</a>
+						<a class="nav-link" href="{% url 'blog:about_website' %}">About this website</a>
 					</li>
 				</ul>
 
@@ -35,9 +35,10 @@
 						</form>
 					</li>
 					{% if user.is_authenticated %}
+					{% if user.username == "bichanna"%}
 					<!-- DROP DOWN MENU -->
 					<li class="dropdown">
-						<button class="dropbtn2">Setting<i class="fa fa-caret-down"></i></button>
+						<button class="dropbtn2">Settings<i class="fa fa-caret-down"></i></button>
 						<div class="dropdown-content2">
 							<a href="{% url 'accounts:user_detail' user.pk %}">User Info</a>
 							<a href="{% url 'blog:post_review'%}">Draft List</a>
@@ -45,9 +46,20 @@
 						</div>
 					</li>
 					{% else %}
-					<!--<li class="nav-item">
-						<a class="nav-link" href="{% url 'accounts:user_create' %}">Sign Up</a>
-					</li>-->
+					<li class="nav-item">
+							<a class="nav-link" href="{% url 'accounts:user_detail' user.pk %}">User Info</a>
+						</li>
+						
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'accounts:user_update' user.pk %}">User Info Update</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link"href="{% url 'logout' %}">Log Out</a>
+						</li>
+					{% endif %}
+					{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'accounts:user_create' %}">Sign Up!</a>
 					<li class="nav-item">
 						<a class="nav-link" href="{% url 'login' %}">Log In</a>
 					</li>

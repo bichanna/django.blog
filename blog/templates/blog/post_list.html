@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-	<div class="dropdown">
+	<div class="dropdown first">
 		<button class="dropbtn">Sort by <i class="fa fa-caret-down"></i></button>
 		<div class="dropdown-content">
 			<a href="{% url 'blog:post_list'%}?sort=new">New</a>
