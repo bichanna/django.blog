@@ -14,6 +14,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 
 class Post(models.Model):
@@ -33,10 +34,16 @@ class Post(models.Model):
 	created_date = models.DateTimeField(default = timezone.now)
 	published_date = models.DateTimeField(blank=True,null=True)
 	image = models.ImageField(upload_to="images", blank=True, null=True)
+	likes= models.IntegerField(default=0)
+	dislikes = models.IntegerField(default=0)
+
 
 	def publish(self):
 		self.published_date = timezone.now()
 		self.save()
+
+	def save(self, *args, **kwargs):
+		
 
 	def __str__(self):
 		return str(self.author) + " " + str(self.title)

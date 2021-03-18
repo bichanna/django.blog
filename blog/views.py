@@ -30,7 +30,8 @@ class PostListView(ListView):
 	"""
 	model = Post
 	template_name = "blog/post_list.html"
-	paginate_by = 12
+	paginate_by = 6
+
 
 
 	def get_queryset(self):
@@ -88,10 +89,16 @@ class AboutAuthorView(ListView):
 	template_name = "blog/about_author.html"
 post_list = AboutAuthorView.as_view()
 
+class AboutWebsiteView(ListView):
+	model = Post
+	template_name = "blog/about_website.html"
+post_list = AboutWebsiteView.as_view()
+
 
 class PostDetailView(DetailView):
 	model = Post
 	template_name = "blog/post_detail.html"
+	
 	
 post_detail = PostDetailView.as_view()
 
