@@ -9,9 +9,9 @@
 	</div>
 	{% for post in post_list %}
 		<div class="post">
-			<p class="date">published: {{ post.published_date|date:"M d, Y" }}, by: {{ post.author.username }}</p>
-			<h2><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-			<p>{{ post.text|linebreaksbr }}</p>
+			<p class="date">published: {{ post.published_date|date:"M d, Y" }}, by: Nobu</p>
+			<h2><a class="post_link" href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+			<!--<p>{{ post.text|linebreaksbr }}</p>-->
 		</div>
 	{% endfor %}
 

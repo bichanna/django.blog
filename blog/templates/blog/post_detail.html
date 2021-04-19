@@ -10,9 +10,26 @@
 		<h2>{{ post.title }}</h2>
 		<p></p>
 		<p>{{ post.text|linebreaksbr }}</p>
-		{% if post.image.url %}
-			<image id="image" src="{{post.image.url}}" alt="Image not supported" >
+		
+	
+		{% if post.image %}
+			<p><image id="image" src="{{post.image.url}}" alt="Image not supported" ></p>
+		{% else %}
+			<p></p>
 		{% endif %}
+
+
+		<!--<a href="#" class="preference" onClick="document.getElementById('likebutton').submit()">👍</a> {{post.likes}}   |   <a href="#" class="preference" onClick="document.getElementById('dislikebutton').submit()">👎</a> {{post.dislikes}}
+
+		<form id="likebutton" method="POST" action="/post/{{post.id}}/preference/1/">
+		{% csrf_token %}
+		<input type="hidden">
+		</form>
+
+		<form id="dislikebutton" method="POST" action="/post/{{post.id}}/preference/2/">
+		{% csrf_token %}
+		<input type="hidden">
+		</form>-->
 	</div>
 	<div>
 		<!-- Here, I'm planning to put recommended related posts -->
@@ -26,4 +43,22 @@
 			<a class="btn btn-danger btn-lg" href="{% url 'blog:post_delete' post.pk %}">Delete</a>
 		</div>
 	{% endif %}
+	<div>
+		{% if request.path == "/1/" %}
+			<p></p>
+		{% else %}
+			<a href="{% url 'blog:post_detail' pk=post.pk|add:'-1' %}">[Previous]</a>
+		{% endif %}
+		{% if request.path == latest %}
+			<p></p>
+		{% else %}
+			<a href="{% url 'blog:post_detail' pk=post.pk|add:'1' %}">[Next]</a>
+		{% endif %}
+
+	</div>
 {% endblock %}
+
+
+
+
+

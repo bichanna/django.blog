@@ -4,11 +4,13 @@ h1 a, h2 a {
 
 html {
 	font-size: 63.5%;
+	scroll-behavior: smooth;
 }
 
 body {
 	font-size: 1.4rem;
-	font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+	/*font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;*/
+	font-family: 'Ubuntu Mono', monospace;
 }
 
 footer {
@@ -25,11 +27,28 @@ footer {
 	background-color: rgba(222,120,31,0.68);
 }
 
+.home {
+	background-color: rgba(222,115,31,0.5);
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
+.search-bar {
+	border-radius: 10px;
+}
 
 #image {
 	max-width: 500px;
 	max-height: 400px;
+}
+#image2{
+	max-width: 250px;
+	max-height: 200px;
+}
+
+#about-page-necoman{
+	max-height: 200px;
 }
 
 #form {
@@ -44,6 +63,10 @@ footer {
 
 .search-botton:hover {
 	background-color: rgba(255,255,0,.5);
+}
+
+.post_link{
+	color: rgba(222,120,31,1) !important;
 }
 
 .navbar {
@@ -74,7 +97,9 @@ footer {
 	transition: background-color 0.2s;
 	border-radius: 10px;
 	font-size: 82%;
+	font-weight: normal;
 }
+
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
 	background-color: rgba(255,255,0,.5);

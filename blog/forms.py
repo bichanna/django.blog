@@ -24,7 +24,7 @@ class PostForm(ModelForm):
 class PostSearchForm(forms.Form):
 	key_word = forms.CharField(
 		required=False,
-		widget= forms.TextInput(attrs={"placeholder":"🔍 search..."})   # this is how to put a place holder
+		widget= forms.TextInput(attrs={"placeholder":" search..."})   # this is how to put a place holder
         )
 
 

@@ -6,5 +6,7 @@
 	{% csrf_token %}
 	{% bootstrap_form form %}
 	<button type="submit" class="btn btn-primary btn-lg">Log in</button>
+	<p></p>
+	<p>Don't have an account?&nbsp;&nbsp;&nbsp;<a href="{% url 'accounts:user_create' %}">Sign up from here!</a></p>
 </form>
 {% endblock %}

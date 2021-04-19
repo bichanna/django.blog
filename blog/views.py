@@ -23,6 +23,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 
+class PostHomeView(ListView):
+	model = Post
+	template_name = "blog/post_home.html"
+
+post_list = PostHomeView.as_view()
+
 class PostListView(ListView):
 	"""
 		Get Request用の処理
@@ -84,20 +90,35 @@ class PostListView(ListView):
 
 post_list = PostListView.as_view()
 
-class AboutAuthorView(ListView):
-	model = Post
-	template_name = "blog/about_author.html"
-post_list = AboutAuthorView.as_view()
+class AboutView(ListView):
+	model = User
+	template_name = "blog/about.html"
 
-class AboutWebsiteView(ListView):
-	model = Post
-	template_name = "blog/about_website.html"
-post_list = AboutWebsiteView.as_view()
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context["users"] = len(User.objects.all())
+		return context
+
+post_list = AboutView.as_view()
 
 
 class PostDetailView(DetailView):
 	model = Post
 	template_name = "blog/post_detail.html"
+
+	def get_queryset(self):
+		queryset = super().get_queryset()
+		if self.kwargs['pk']:
+			return Post.objects.filter(id=self.kwargs["pk"])
+		else:
+   			return Post.objects.none()
+   			
+	def get_context_data(self,**kwargs):
+		context = super().get_context_data(**kwargs)
+		context["latest"] = "/"+str(len(Post.objects.all()))+"/"
+		print("⭐"*10)
+		print(context["latest"])
+		return context
 	
 	
 post_detail = PostDetailView.as_view()

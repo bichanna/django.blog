@@ -7,10 +7,12 @@
 		{% bootstrap_javascript jquery="slim" %}
 
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+		<link rel="icon" href="/media/images/neko-man_88synL9.png">
+		<title>MathBuds</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light">
-			<a class="navbar-brand" href="/">bichanna's Math Blog</a>
+			<a class="navbar-brand" href="/">MathBuds!</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -18,20 +20,20 @@
 			<div class="collapse navbar-collapse" id="navbarNavDropdown">
 				<ul class="navbar-nav mr-auto">
 					<!-- 左にメニューを出すとき-->
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'blog:about_author' %}">&nbsp; About bichanna</a>
-						<a class="nav-link" href="{% url 'blog:about_website' %}">About this website</a>
+					<li class="nav-item ml-3">
+						<a class="nav-link" href="{% url 'blog:about...' %}">About...</a>
+					</li>
+					<li class="nav-item ml-3">
+						<a class="nav-link" href="{% url 'blog:post_list' %}">Posts</a>
 					</li>
 				</ul>
 
 				<ul class="navbar-nav">
 					<!-- 右にメニューを出すとき -->
 						<!-- search window-->
-					<li class="nav-item">
+					<li class="nav-item ml-3">
 						<form id="form" action="" method="GET">
-							{{ form.key_word }}
-							{% if form %}
-							{% endif %}
+							<p class="search-bar">{{ form.key_word }}</p>
 						</form>
 					</li>
 					{% if user.is_authenticated %}
@@ -46,21 +48,18 @@
 						</div>
 					</li>
 					{% else %}
-					<li class="nav-item">
+					<li class="nav-item ml-3">
 							<a class="nav-link" href="{% url 'accounts:user_detail' user.pk %}">User Info</a>
 						</li>
 						
-						<li class="nav-item">
-							<a class="nav-link" href="{% url 'accounts:user_update' user.pk %}">User Info Update</a>
-						</li>
 						<li class="nav-item">
 							<a class="nav-link"href="{% url 'logout' %}">Log Out</a>
 						</li>
 					{% endif %}
 					{% else %}
-					<li class="nav-item">
+					<li class="nav-item ml-3">
 						<a class="nav-link" href="{% url 'accounts:user_create' %}">Sign Up!</a>
-					<li class="nav-item">
+					<li class="nav-item ml-3">
 						<a class="nav-link" href="{% url 'login' %}">Log In</a>
 					</li>
 					{% endif %}

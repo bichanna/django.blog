@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+	<div class="home">
+		<image src="/media/images/neko-man.png" id="image2" alt="a catman with goatee and mustache illustration inspired by LHOOQ by Marcel Duchamp">
+		<h1>Hello, my name is Nobu</h1>
+		<p>... and this website is for ones who can't remember math terms ...</p>
+		<a href="{% url 'blog:about...' %}#about-this-website">=> Read More!</a>
+		<p></p>
+		<a href="{% url 'blog:post_list'%}">=> Go to Posts!</a>
+	</div>
+{% endblock %}
