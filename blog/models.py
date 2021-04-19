@@ -36,6 +36,7 @@ class Post(models.Model):
 	image = models.ImageField(upload_to="images", blank=True, null=True)
 	likes= models.IntegerField(default=0)
 	dislikes = models.IntegerField(default=0)
+	url = models.SlugField(max_length=300, default=False)
 
 
 	def publish(self):
@@ -43,6 +44,8 @@ class Post(models.Model):
 		self.save()
 
 	def save(self, *args, **kwargs):
+		self.url= slugify(self.title)
+		super(Post, self).save(*args, **kwargs)
 		
 
 	def __str__(self):
@@ -50,7 +53,17 @@ class Post(models.Model):
 
 
 
+class Preference(models.Model):
+	user= models.ForeignKey(User, on_delete=models.CASCADE)
+	post= models.ForeignKey(Post, on_delete=models.CASCADE)
+	value= models.IntegerField()
+	date= models.DateTimeField(auto_now= True)
 
+	def __str__(self):
+		return str(self.user) + ":" + str(self.post) + ":" + str(self.value)
+
+	class Meta:
+		unique_together = ("user", "post", "value")
 
 
 

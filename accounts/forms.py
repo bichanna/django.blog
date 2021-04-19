@@ -14,7 +14,7 @@ class UserUpdateForm(ModelForm):
 	"""ユーザー情報更新フォーム"""
 	class Meta:
 		model = User
-		fields = ("last_name", "first_name",)
+		fields = ("username","email","first_name", "last_name")
 
 
 	def __init__(self, *args, **kwargs):
