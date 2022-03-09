@@ -2,4 +2,4 @@
 
 One of my oldest Django projects on Github.
 
-I just started learning Django.
+My code looks quite different from now...
