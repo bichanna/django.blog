@@ -13,9 +13,3 @@ from .models import Post, Preference
 admin.site.register(Post)
 admin.site.register(Preference)
 
-
-
-
-
-
-### adminのパスワードはNobu8717
